@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabrina Talo Studios — Live Beautifully</title>
+  <meta name="description" content="Interior styling studio based in Bangalow, Australia. Styling real homes for real people — spaces that feel like you.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Sabrina Talo Studios — Live Beautifully">
+  <meta property="og:description" content="Styling real homes for real people — spaces that feel like you.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_AU">
+
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Sabrina Talo Studios",
+    "description": "Interior styling studio for private homes and holiday rentals",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bangalow",
+      "addressRegion": "NSW",
+      "addressCountry": "AU"
+    },
+    "openingHours": "Mo-Fr 09:00-17:00",
+    "sameAs": [
+      "https://www.instagram.com/sabrinatalostudios/",
+      "https://www.facebook.com/profile.php?id=61574074654975"
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ── Hero Scrollytelling ─────────────────────────────────── */
+    .hero-scroll-section {
+      position: relative;
+      height: 150vh;
+    }
+
+    .hero-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      will-change: transform;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15) 0%,
+        rgba(0,0,0,0) 40%,
+        rgba(0,0,0,0.35) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-overlay-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 0 var(--space-xl) 80px;
+      max-width: 1600px;
+      margin: 0 auto;
+      right: 0;
+      left: 0;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 11vw, 160px);
+      font-weight: 600;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--color-surface);
+      margin-bottom: var(--space-lg);
+      will-change: opacity, transform;
+    }
+
+    .hero-sub {
+      font-family: var(--font-body);
+      font-size: clamp(15px, 1.4vw, 19px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+      max-width: 480px;
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      right: var(--space-xl);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      color: rgba(255,255,255,0.5);
+      transition: opacity 0.4s ease;
+    }
+
+    .hero-scroll-indicator span {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: rgba(255,255,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.8);
+      animation: scrollDrop 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollDrop {
+      0%   { top: -100%; }
+      100% { top: 100%; }
+    }
+
+    /* ── Intro Section ────────────────────────────────────────── */
+    .intro-section {
+      padding: 120px 0 100px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .intro-quote {
+      font-family: var(--font-heading);
+      font-size: clamp(22px, 2.8vw, 40px);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+      position: relative;
+      padding-left: var(--space-xl);
+    }
+
+    .intro-quote::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 2px;
+      height: calc(100% - 16px);
+      background: var(--color-border);
+    }
+
+    .intro-text {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .intro-text p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(40,40,42,0.75);
+    }
+
+    .intro-text .btn {
+      align-self: flex-start;
+      margin-top: var(--space-md);
+    }
+
+    /* ── Values Marquee Section ────────────────────────────────── */
+    .values-section {
+      padding: 0;
+      background: var(--color-muted);
+    }
+
+    .values-header {
+      padding: 80px var(--space-xl) 48px;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+
+    .values-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      color: var(--color-text);
+    }
+
+    .values-marquee-wrap {
+      padding-bottom: 80px;
+    }
+
+    /* ── Stat Strip ─────────────────────────────────────────────── */
+    .stat-strip {
+      padding: 80px 0;
+      border-top: 1px solid rgba(40,40,42,0.1);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(40,40,42,0.1);
+    }
+
+    .stat-item {
+      background: var(--color-surface);
+      padding: var(--space-xl);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+
+    .stat-label {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(40,40,42,0.45);
+    }
+
+    /* ── About Preview ──────────────────────────────────────────── */
+    .about-preview {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 90vh;
+    }
+
+    .about-image-col {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-image-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.9s ease-out;
+    }
+
+    .about-image-col:hover img {
+      transform: scale(1.03);
+    }
+
+    .about-content-col {
+      background: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-2xl) var(--space-xl);
+    }
+
+    .about-content-col .label-light {
+      margin-bottom: var(--space-xl);
+    }
+
+    .about-content-col h2 {
+      color: var(--color-surface);
+      margin-bottom: var(--space-xl);
+      font-size: clamp(36px, 4.5vw, 64px);
+    }
+
+    .about-content-col p {
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      font-size: 16px;
+      line-height: 1.85;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* ── Contact Teaser ─────────────────────────────────────────── */
+    .contact-teaser {
+      padding: 120px var(--space-xl);
+      text-align: center;
+      border-top: 1px solid rgba(40,40,42,0.1);
+    }
+
+    .contact-teaser .label {
+      margin-bottom: var(--space-lg);
+    }
+
+    .contact-teaser h2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 90px);
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-xl);
+      line-height: 0.95;
+    }
+
+    /* ── Responsive Additions ───────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+
+      .about-preview {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .about-image-col {
+        height: 60vw;
+        min-height: 300px;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-overlay-content {
+        padding: 0 var(--space-lg) 60px;
+      }
+
+      .intro-section { padding: 80px 0; }
+
+      .intro-quote {
+        font-size: clamp(20px, 4vw, 28px);
+        padding-left: var(--space-lg);
+      }
+
+      .contact-teaser { padding: 80px var(--space-lg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Skip to content -->
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ── Navigation ────────────────────────────────────────────── -->
+<nav id="nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Sabrina Talo Studios — Home">
+      <img src="Media/Logo_Hero.webp" alt="SABRINA TALO STUDIOS" width="200" height="36">
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="holiday-homes.html" class="nav-link">Holiday Homes</a></li>
+      <li><a href="private-homes.html" class="nav-link">Private Homes</a></li>
+      <li><a href="about.html" class="nav-link">About STS</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Mobile Menu ────────────────────────────────────────────── -->
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation" aria-modal="true">
+  <nav aria-label="Mobile navigation">
+    <ul class="mobile-menu-links" role="list">
+      <li><a href="projects.html" class="mobile-menu-link">Projects</a></li>
+      <li><a href="holiday-homes.html" class="mobile-menu-link">Holiday Homes</a></li>
+      <li><a href="private-homes.html" class="mobile-menu-link">Private Homes</a></li>
+      <li><a href="about.html" class="mobile-menu-link">About STS</a></li>
+      <li><a href="contact.html" class="mobile-menu-link">Contact</a></li>
+    </ul>
+  </nav>
+  <p class="mobile-menu-footer">Bangalow, Australia &nbsp;·&nbsp; Mon–Fri 9am–5pm</p>
+</div>
+
+<!-- ── Main ──────────────────────────────────────────────────── -->
+<main id="main">
+
+  <!-- Hero: Video Scrollytelling -->
+  <section class="hero-scroll-section" id="hero-scroll" aria-label="Hero">
+    <div class="hero-sticky">
+      <video
+        id="hero-video"
+        preload="auto"
+        muted
+        playsinline
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <source src="Media/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-gradient" aria-hidden="true"></div>
+
+      <div class="hero-overlay-content">
+        <h1 class="hero-tagline" id="hero-tagline">Live<br>Beautifully.</h1>
+        <p class="hero-sub" id="hero-sub">
+          Styling real homes for real people —<br>
+          spaces that feel like you.
+        </p>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero-scroll-indicator" id="scroll-indicator" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction -->
+  <section class="intro-section section" id="intro" aria-labelledby="intro-heading">
+    <div class="container">
+      <div class="intro-grid">
+        <blockquote class="intro-quote" data-word-reveal>
+          "Good styling shapes how you feel in a space. I create homes that feel personal, lived-in, and inviting — whether it's your own sanctuary or a holiday stay people can't wait to come back to."
+        </blockquote>
+
+        <div class="intro-text">
+          <span class="label reveal reveal-delay-1">About the Studio</span>
+          <p class="reveal reveal-delay-2">
+            Based in Bangalow, I work with what you already have and make it feel fresh again. I mix new pieces with second-hand finds so your home feels lived-in, not staged.
+          </p>
+          <p class="reveal reveal-delay-3">
+            I keep styling realistic, affordable and true to how you actually live. Every space I touch reflects the personality of the people in it — not a magazine, not a showroom. Yours.
+          </p>
+          <a href="about.html" class="btn btn-primary reveal reveal-delay-4">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Values Marquee -->
+  <section class="values-section" id="values" aria-label="Our values">
+    <div class="values-header">
+      <h2 class="reveal">The<br>ST Way</h2>
+    </div>
+
+    <div class="values-marquee-wrap">
+      <div class="marquee-track" role="marquee" aria-label="Brand values">
+        <div class="marquee-inner" aria-hidden="true">
+          <!-- Set 1 -->
+          <span class="marquee-item">
+            I work with what you already have and make it feel fresh again
+            <span class="marquee-dot"></span>
+          </span>
+          <span class="marquee-item">
+            I mix new pieces with second-hand finds so your home feels lived-in, not staged
+            <span class="marquee-dot"></span>
+          </span>
+          <span class="marquee-item">
+            I keep styling realistic, affordable and true to how you actually live
+            <span class="marquee-dot"></span>
+          </span>
+          <span class="marquee-item">
+            I listen first, then shape the space around your personality and routines
+            <span class="marquee-dot"></span>
+          </span>
+          <span class="marquee-item">
+            I focus on comfort, warmth and character — not perfection
+            <span class="marquee-dot"></span>
+          </span>
+          <!-- Set 2 (duplicate for seamless loop) -->
+          <span class="marquee-item" aria-hidden="true">
+            I work with what you already have and make it feel fresh again
+            <span class="marquee-dot"></span>
+          </span>
+          <span class="marquee-item" aria-hidden="true">
+            I mix new pieces with second-hand finds so your home feels lived-in, not staged
+            <span class="marquee-dot"></span>
+          </span>
+          <span class="marquee-item" aria-hidden="true">
+            I keep styling realistic, affordable and true to how you actually live
+            <span class="marquee-dot"></span>
+          </span>
+          <span class="marquee-item" aria-hidden="true">
+            I listen first, then shape the space around your personality and routines
+            <span class="marquee-dot"></span>
+          </span>
+          <span class="marquee-item" aria-hidden="true">
+            I focus on comfort, warmth and character — not perfection
+            <span class="marquee-dot"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stat Strip -->
+  <section class="stat-strip" aria-label="Studio highlights">
+    <div class="container">
+      <div class="stat-grid">
+        <div class="stat-item reveal">
+          <span class="stat-number">Bangalow</span>
+          <span class="stat-label">Bangalow, NSW</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <span class="stat-number">Real</span>
+          <span class="stat-label">Homes. Real People. Real Style.</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-4">
+          <span class="stat-number">Yours.</span>
+          <span class="stat-label">Every space uniquely personal</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Holiday Homes Block -->
+  <section class="service-block" id="holiday-homes-block" aria-labelledby="holiday-heading">
+    <div class="service-image">
+      <img
+        src="Media/IMG_8890.webp"
+        alt="Beautifully styled holiday home interior with warm textures and inviting atmosphere"
+        loading="lazy"
+        width="800"
+        height="600"
+      >
+    </div>
+    <div class="service-content">
+      <span class="label reveal">Services</span>
+      <h2 id="holiday-heading" class="reveal reveal-delay-1">Holiday Homes<br>Styling</h2>
+      <p class="reveal reveal-delay-2">
+        I style holiday rentals and Airbnbs to elevate the guest experience — spaces that photograph beautifully, feel warm on arrival, and keep guests coming back. Budget-friendly solutions that make a real difference to your booking rates.
+      </p>
+      <a href="holiday-homes.html" class="btn btn-primary reveal reveal-delay-3">Holiday Homes Styling</a>
+    </div>
+  </section>
+
+  <!-- Private Homes Block -->
+  <section class="service-block reverse" id="private-homes-block" aria-labelledby="private-heading">
+    <div class="service-image">
+      <img
+        src="Media/IMG_8791.webp"
+        alt="Private home interior styled with curated vintage and new pieces"
+        loading="lazy"
+        width="800"
+        height="600"
+      >
+    </div>
+    <div class="service-content">
+      <span class="label reveal">Services</span>
+      <h2 id="private-heading" class="reveal reveal-delay-1">Private<br>Homes</h2>
+      <p class="reveal reveal-delay-2">
+        Your home should feel like you — grounded, personal, inviting. I work with your existing pieces and your budget to create spaces that reflect how you actually live. No jargon. No showroom aesthetic. Just your home, beautifully itself.
+      </p>
+      <a href="private-homes.html" class="btn btn-primary reveal reveal-delay-3">Home Styling Services</a>
+    </div>
+  </section>
+
+  <!-- About Preview Block -->
+  <section class="about-preview" id="about-preview" aria-labelledby="about-preview-heading">
+    <div class="about-image-col">
+      <img
+        src="Media/Sabrina.png"
+        alt="Sabrina Talo, interior stylist and founder of Sabrina Talo Studios"
+        loading="lazy"
+        width="800"
+        height="1000"
+      >
+    </div>
+    <div class="about-content-col">
+      <span class="label-light reveal">About Sabrina</span>
+      <h2 id="about-preview-heading" class="reveal reveal-delay-1">A love of<br>real spaces.</h2>
+      <p class="reveal reveal-delay-2">
+        I started Sabrina Talo Studios from a genuine love of creating spaces that feel right — not just look right. I grew up surrounded by a mix of beautiful old things and considered new ones, and that shaped how I see interiors.
+      </p>
+      <p class="reveal reveal-delay-3">
+        Every home has a story. My job is to listen to yours, then help you tell it through the space you live in. I work with your routines, your personality, and your budget — nothing more, nothing less.
+      </p>
+      <a href="contact.html" class="btn btn-primary-white reveal reveal-delay-4">Work With Me</a>
+    </div>
+  </section>
+
+  <!-- Projects Teaser -->
+  <section class="section" id="projects-teaser" aria-label="Projects preview">
+    <div class="container">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 2px;">
+        <div style="overflow:hidden; aspect-ratio: 4/3;">
+          <img
+            src="Media/IMG_9013.webp"
+            alt="Styled interior project — living space with layered textures"
+            loading="lazy"
+            style="width:100%; height:100%; object-fit:cover; transition: transform 0.8s ease-out;"
+            onmouseover="this.style.transform='scale(1.04)'"
+            onmouseout="this.style.transform='scale(1)'"
+          >
+        </div>
+        <div style="overflow:hidden; aspect-ratio: 4/3;">
+          <img
+            src="Media/EA4A7CD1-064C-4129-BC17-D876B121644C.webp"
+            alt="Styled interior project — warm, inviting residential space"
+            loading="lazy"
+            style="width:100%; height:100%; object-fit:cover; transition: transform 0.8s ease-out;"
+            onmouseover="this.style.transform='scale(1.04)'"
+            onmouseout="this.style.transform='scale(1)'"
+          >
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; padding: 48px 0 0; border-top: 1px solid rgba(40,40,42,0.1); margin-top: 2px;">
+        <div>
+          <span class="label" style="display:block; margin-bottom: 12px;">Selected Work</span>
+          <h2 class="reveal" style="font-size: clamp(28px, 4vw, 52px);">Projects</h2>
+        </div>
+        <a href="projects.html" class="btn btn-primary reveal reveal-delay-2">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Teaser -->
+  <section class="contact-teaser" aria-labelledby="contact-cta-heading">
+    <span class="label">Get In Touch</span>
+    <h2 id="contact-cta-heading" class="reveal">Ready to start?</h2>
+    <p style="max-width:520px; margin:0 auto var(--space-xl); font-size:16px; color:rgba(40,40,42,0.65); line-height:1.8;" class="reveal reveal-delay-1">
+      Let's talk about your space. Whether it's a holiday home you want guests to love, or a personal home that finally feels like you — I'd love to hear about it.
+    </p>
+    <a href="contact.html" class="btn btn-primary reveal reveal-delay-2">Get In Touch</a>
+  </section>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────── -->
+<footer id="footer" aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div>
+        <img src="Media/LOGOS++SABRINA+TALO+STUDIOS.webp" alt="SABRINA TALO STUDIOS" class="footer-brand-logo" width="200" height="28">
+        <p class="footer-tagline">Live Beautifully.</p>
+        <p class="footer-desc">Interior styling for private homes and holiday rentals. Based in Bangalow, NSW, Australia.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/sabrinatalostudios/" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61574074654975" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+
+      <!-- Sitemap -->
+      <div>
+        <p class="footer-heading">Navigate</p>
+        <ul class="footer-links" role="list">
+          <li><a href="projects.html" class="footer-link">Projects</a></li>
+          <li><a href="holiday-homes.html" class="footer-link">Holiday Homes</a></li>
+          <li><a href="private-homes.html" class="footer-link">Private Homes</a></li>
+          <li><a href="about.html" class="footer-link">About STS</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Info -->
+      <div class="footer-info">
+        <p class="footer-heading">Find Us</p>
+        <p>
+          Bangalow, NSW<br>
+          Byron Bay Hinterland<br>
+          Australia
+        </p>
+        <p style="margin-top: 20px;">
+          Monday – Friday<br>
+          9am – 5pm
+        </p>
+      </div>
+
+      <!-- Newsletter -->
+      <div>
+        <p class="footer-heading">Stay in Touch</p>
+        <p style="font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:16px; line-height:1.7;">
+          Styling ideas, new projects, and behind-the-scenes — straight to your inbox.
+        </p>
+        <form class="footer-newsletter-form" aria-label="Newsletter signup" onsubmit="handleNewsletterSubmit(event)">
+          <label for="newsletter-email" class="sr-only">Email address</label>
+          <input
+            type="email"
+            id="newsletter-email"
+            name="email"
+            placeholder="Your email address"
+            required
+            autocomplete="email"
+          >
+          <button type="submit">Sign Up</button>
+        </form>
+        <p class="footer-privacy">We respect your privacy.</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">© 2025 Sabrina Talo Studios. All rights reserved.</p>
+      <p class="footer-copyright">Bangalow, Australia</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Scripts ─────────────────────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+
+  // ── Video Scrollytelling (RAF-based, smooth) ──────────────────
+  const heroVideo   = document.getElementById('hero-video');
+  const heroScroll  = document.getElementById('hero-scroll');
+  const heroTagline = document.getElementById('hero-tagline');
+  const heroSub     = document.getElementById('hero-sub');
+  const scrollInd   = document.getElementById('scroll-indicator');
+
+  if (heroVideo && heroScroll) {
+    // Force preload
+    heroVideo.preload = 'auto';
+    heroVideo.load();
+    heroVideo.pause();
+
+    // ── State: scroll updates targetTime, RAF applies it ──────────
+    let targetTime    = 0;
+    let displayTime   = 0;
+    let lastSeekTime  = -1;
+    let scrollProgress = 0;
+
+    // Scroll handler — only stores the target, does NO DOM work on video
+    function onScroll() {
+      const scrollTop     = window.pageYOffset;
+      const sectionTop    = heroScroll.offsetTop;
+      const sectionHeight = heroScroll.offsetHeight;
+      const vpHeight      = window.innerHeight;
+
+      scrollProgress = Math.max(0, Math.min(1,
+        (scrollTop - sectionTop) / (sectionHeight - vpHeight)
+      ));
+
+      if (heroVideo.duration && !isNaN(heroVideo.duration)) {
+        targetTime = scrollProgress * heroVideo.duration;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // init
+
+    // ── RAF loop — applies targetTime to video once per frame ─────
+    // Uses fastSeek() when available (much faster, trades precision for speed)
+    // Skips if delta < 1 video-frame worth (~1/30s) to avoid thrashing
+    const FRAME = 1 / 30;
+
+    function rafLoop() {
+      if (heroVideo.duration && !isNaN(heroVideo.duration) && heroVideo.readyState >= 2) {
+        // Lerp displayTime toward targetTime — smooths out fast-scroll jerking
+        displayTime += (targetTime - displayTime) * 0.18;
+
+        const delta = Math.abs(displayTime - lastSeekTime);
+        if (delta >= FRAME) {
+          if (typeof heroVideo.fastSeek === 'function') {
+            heroVideo.fastSeek(displayTime);
+          } else {
+            heroVideo.currentTime = displayTime;
+          }
+          lastSeekTime = displayTime;
+        }
+      }
+
+      // ── Overlay fade & drift (also in RAF, zero layout thrash) ──
+      const p = scrollProgress;
+
+      // Text: visible until 20%, fades out by 42% — gone well before section ends
+      const textOpacity = p < 0.25 ? 1
+        : p < 0.75 ? 1 - (p - 0.25) / 0.50
+        : 0;
+      if (heroTagline) {
+        heroTagline.style.opacity   = textOpacity;
+        heroTagline.style.transform = `translateY(${p * -50}px)`;
+      }
+      if (heroSub) {
+        heroSub.style.opacity   = textOpacity;
+        heroSub.style.transform = `translateY(${p * -30}px)`;
+      }
+
+      // Scroll indicator: hide after first movement
+      if (scrollInd) scrollInd.style.opacity = p > 0.03 ? 0 : 1;
+
+      requestAnimationFrame(rafLoop);
+    }
+
+    // Start loop once metadata is ready
+    if (heroVideo.readyState >= 1) {
+      rafLoop();
+    } else {
+      heroVideo.addEventListener('loadedmetadata', rafLoop, { once: true });
+    }
+  }
+
+  // ── Nav scroll state ───────────────────────────────────────────
+  const nav = document.getElementById('nav');
+  if (nav) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset > window.innerHeight * 0.9;
+          nav.classList.toggle('scrolled', scrolled);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  // ── Hamburger / Mobile Menu ────────────────────────────────────
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        hamburger.focus();
+      }
+    });
+  }
+
+  // ── Scroll Reveal (IntersectionObserver) ──────────────────────
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-clip');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    // Fallback: show all
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
+  // ── Active nav link ────────────────────────────────────────────
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+      link.classList.add('active');
+    }
+  });
+
+  // ── Newsletter form ────────────────────────────────────────────
+  window.handleNewsletterSubmit = function(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = 'Thank You';
+    btn.disabled = true;
+    e.target.reset();
+  };
+
+})();
+</script>
+
+<!-- GSAP Word Reveal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script>
+window.addEventListener('load', function () {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.querySelectorAll('[data-word-reveal]').forEach(function (el) {
+    var raw = el.textContent.trim();
+    var words = raw.split(/\s+/);
+    el.innerHTML = words
+      .map(function (w) { return '<span class="wrs" style="display:inline-block;">' + w + '</span>'; })
+      .join(' ');
+    var spans = el.querySelectorAll('.wrs');
+
+    gsap.set(spans, { color: 'rgba(40,40,42,0.15)' });
+
+    gsap.to(spans, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 75%',
+        end: 'bottom 30%',
+        scrub: 1.5,
+      },
+      color: '#28282A',
+      stagger: { each: 0.06, ease: 'none' },
+      ease: 'none',
+    });
+  });
+});
+</script>
+
+<!-- Screen-reader only helper -->
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+</body>
+</html>
