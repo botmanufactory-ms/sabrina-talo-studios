@@ -433,11 +433,13 @@
       <div class="hero-gradient" aria-hidden="true"></div>
 
       <div class="hero-overlay-content">
-        <h1 class="hero-tagline" id="hero-tagline">Live<br>Beautifully.</h1>
-        <p class="hero-sub" id="hero-sub">
-          Styling real homes for real people —<br>
-          spaces that feel like you.
-        </p>
+        <div id="hero-text-wrapper">
+          <h1 class="hero-tagline" id="hero-tagline">Live<br>Beautifully.</h1>
+          <p class="hero-sub" id="hero-sub">
+            Styling real homes for real people —<br>
+            spaces that feel like you.
+          </p>
+        </div>
       </div>
 
       <!-- Scroll indicator -->
@@ -750,7 +752,7 @@
   const scrollInd   = document.getElementById('scroll-indicator');
 
   if (heroCanvas && heroScroll) {
-    const TOTAL   = 121;
+    const TOTAL   = 151;
     const DIR     = 'Media/frames/';
     const frames  = new Array(TOTAL).fill(null);
     const ctx     = heroCanvas.getContext('2d');
@@ -831,23 +833,42 @@
       ));
     }, { passive: true });
 
+    // ── Text position: bottom-left → centered over sofa ──────────
+    const heroWrapper = document.getElementById('hero-text-wrapper');
+    let naturalCenter = null;
+
+    function measureTextPosition() {
+      if (!heroWrapper) return;
+      heroWrapper.style.transform = '';
+      heroWrapper.style.textAlign = '';
+      const rect = heroWrapper.getBoundingClientRect();
+      naturalCenter = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+    }
+    // Measure once layout is settled
+    setTimeout(measureTextPosition, 200);
+    window.addEventListener('resize', measureTextPosition, { passive: true });
+
     // ── RAF loop ──────────────────────────────────────────────────
     function rafLoop() {
       // Draw correct frame
       const targetIdx = Math.min(TOTAL - 1, Math.round(scrollProgress * (TOTAL - 1)));
       if (targetIdx !== lastDrawnIdx && frames[targetIdx]) drawFrame(targetIdx);
 
-      // Overlay text fade + drift
+      // Text: moves from bottom-left → center over sofa as scroll progresses
       const p = scrollProgress;
-      const textOpacity = p < 0.2 ? 1 : p < 0.5 ? 1 - (p - 0.2) / 0.3 : 0;
-      if (heroTagline) {
-        heroTagline.style.opacity   = textOpacity;
-        heroTagline.style.transform = `translateY(${p * -60}px)`;
+      const t = Math.max(0, Math.min(1, (p - 0.15) / 0.85));
+      const ease = t * t * (3 - 2 * t); // smoothstep
+
+      if (heroWrapper && naturalCenter) {
+        // Target: horizontally centered, 38% from top (sofa back area)
+        const targetX = window.innerWidth  * 0.5;
+        const targetY = window.innerHeight * 0.38;
+        const dx = (targetX - naturalCenter.x) * ease;
+        const dy = (targetY - naturalCenter.y) * ease;
+        heroWrapper.style.transform  = `translate(${dx}px, ${dy}px)`;
+        heroWrapper.style.textAlign  = ease > 0.5 ? 'center' : 'left';
       }
-      if (heroSub) {
-        heroSub.style.opacity   = textOpacity;
-        heroSub.style.transform = `translateY(${p * -35}px)`;
-      }
+
       if (scrollInd) scrollInd.style.opacity = p > 0.03 ? 0 : 1;
 
       requestAnimationFrame(rafLoop);
