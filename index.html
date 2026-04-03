@@ -42,6 +42,10 @@
       height: 300vh;
     }
 
+    @media (max-width: 768px) {
+      .hero-scroll-section { height: 180vh; }
+    }
+
     .hero-sticky {
       position: sticky;
       top: 0;
@@ -753,16 +757,24 @@
     let   scrollProgress  = 0;
     let   lastDrawnIdx    = -1;
 
-    // ── Canvas sizing ─────────────────────────────────────────────
+    // ── Canvas sizing (DPR-aware for sharp rendering on retina/mobile) ──
+    const dpr = window.devicePixelRatio || 1;
+
     function resizeCanvas() {
-      heroCanvas.width  = window.innerWidth;
-      heroCanvas.height = window.innerHeight;
+      heroCanvas.width  = window.innerWidth  * dpr;
+      heroCanvas.height = window.innerHeight * dpr;
       if (lastDrawnIdx >= 0 && frames[lastDrawnIdx]) drawFrame(lastDrawnIdx);
     }
-    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    // Debounce resize — iOS fires it on every address-bar show/hide
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resizeCanvas, 100);
+    }, { passive: true });
     resizeCanvas();
 
-    // ── Cover-fit draw ────────────────────────────────────────────
+    // ── Cover-fit draw (works in device pixels) ───────────────────
     function drawFrame(idx) {
       const img = frames[idx];
       if (!img) return;
@@ -792,13 +804,19 @@
       });
     }
 
-    // Load first 20 eagerly, rest sequentially in background
+    // Load first 20 eagerly, then rest in parallel batches of 8
     async function bootstrap() {
       const eager = [];
       for (let i = 1; i <= 20; i++) eager.push(loadFrame(i));
       await Promise.all(eager);
       drawFrame(0);
-      for (let i = 21; i <= TOTAL; i++) await loadFrame(i);
+
+      const BATCH = 8;
+      for (let i = 21; i <= TOTAL; i += BATCH) {
+        const batch = [];
+        for (let j = i; j < Math.min(i + BATCH, TOTAL + 1); j++) batch.push(loadFrame(j));
+        await Promise.all(batch);
+      }
     }
     bootstrap();
 
