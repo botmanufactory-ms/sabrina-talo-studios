@@ -39,24 +39,23 @@
     /* ── Hero Scrollytelling ─────────────────────────────────── */
     .hero-scroll-section {
       position: relative;
-      height: 150vh;
+      height: 300vh;
     }
 
     .hero-sticky {
       position: sticky;
       top: 0;
-      height: 100vh;
+      height: 100dvh;
       width: 100%;
       overflow: hidden;
     }
 
-    #hero-video {
+    #hero-canvas {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      will-change: transform;
+      display: block;
     }
 
     .hero-gradient {
@@ -426,16 +425,7 @@
   <!-- Hero: Video Scrollytelling -->
   <section class="hero-scroll-section" id="hero-scroll" aria-label="Hero">
     <div class="hero-sticky">
-      <video
-        id="hero-video"
-        preload="auto"
-        muted
-        playsinline
-        aria-hidden="true"
-        tabindex="-1"
-      >
-        <source src="Media/hero.mp4" type="video/mp4">
-      </video>
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero-gradient" aria-hidden="true"></div>
 
       <div class="hero-overlay-content">
@@ -748,93 +738,103 @@
 (function () {
   'use strict';
 
-  // ── Video Scrollytelling (RAF-based, smooth) ──────────────────
-  const heroVideo   = document.getElementById('hero-video');
+  // ── Frame Scrollytelling (Canvas-based, works on iOS) ────────
+  const heroCanvas  = document.getElementById('hero-canvas');
   const heroScroll  = document.getElementById('hero-scroll');
   const heroTagline = document.getElementById('hero-tagline');
   const heroSub     = document.getElementById('hero-sub');
   const scrollInd   = document.getElementById('scroll-indicator');
 
-  if (heroVideo && heroScroll) {
-    // Force preload
-    heroVideo.preload = 'auto';
-    heroVideo.load();
-    heroVideo.pause();
+  if (heroCanvas && heroScroll) {
+    const TOTAL   = 121;
+    const DIR     = 'Media/frames/';
+    const frames  = new Array(TOTAL).fill(null);
+    const ctx     = heroCanvas.getContext('2d');
+    let   scrollProgress  = 0;
+    let   lastDrawnIdx    = -1;
 
-    // ── State: scroll updates targetTime, RAF applies it ──────────
-    let targetTime    = 0;
-    let displayTime   = 0;
-    let lastSeekTime  = -1;
-    let scrollProgress = 0;
+    // ── Canvas sizing ─────────────────────────────────────────────
+    function resizeCanvas() {
+      heroCanvas.width  = window.innerWidth;
+      heroCanvas.height = window.innerHeight;
+      if (lastDrawnIdx >= 0 && frames[lastDrawnIdx]) drawFrame(lastDrawnIdx);
+    }
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+    resizeCanvas();
 
-    // Scroll handler — only stores the target, does NO DOM work on video
-    function onScroll() {
+    // ── Cover-fit draw ────────────────────────────────────────────
+    function drawFrame(idx) {
+      const img = frames[idx];
+      if (!img) return;
+      const cW = heroCanvas.width, cH = heroCanvas.height;
+      const iAspect = img.naturalWidth / img.naturalHeight;
+      const cAspect = cW / cH;
+      let sx, sy, sw, sh;
+      if (iAspect > cAspect) {
+        sh = img.naturalHeight; sw = sh * cAspect;
+        sx = (img.naturalWidth - sw) / 2; sy = 0;
+      } else {
+        sw = img.naturalWidth; sh = sw / cAspect;
+        sx = 0; sy = (img.naturalHeight - sh) / 2;
+      }
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cW, cH);
+      lastDrawnIdx = idx;
+    }
+
+    // ── Frame loader ──────────────────────────────────────────────
+    function loadFrame(n) {
+      if (frames[n - 1]) return Promise.resolve();
+      return new Promise(resolve => {
+        const img = new Image();
+        img.onload  = () => { frames[n - 1] = img; resolve(); };
+        img.onerror = resolve;
+        img.src = DIR + 'frame_' + String(n).padStart(4, '0') + '.webp';
+      });
+    }
+
+    // Load first 20 eagerly, rest sequentially in background
+    async function bootstrap() {
+      const eager = [];
+      for (let i = 1; i <= 20; i++) eager.push(loadFrame(i));
+      await Promise.all(eager);
+      drawFrame(0);
+      for (let i = 21; i <= TOTAL; i++) await loadFrame(i);
+    }
+    bootstrap();
+
+    // ── Scroll handler ────────────────────────────────────────────
+    window.addEventListener('scroll', () => {
       const scrollTop     = window.pageYOffset;
       const sectionTop    = heroScroll.offsetTop;
       const sectionHeight = heroScroll.offsetHeight;
       const vpHeight      = window.innerHeight;
-
       scrollProgress = Math.max(0, Math.min(1,
         (scrollTop - sectionTop) / (sectionHeight - vpHeight)
       ));
+    }, { passive: true });
 
-      if (heroVideo.duration && !isNaN(heroVideo.duration)) {
-        targetTime = scrollProgress * heroVideo.duration;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // init
-
-    // ── RAF loop — applies targetTime to video once per frame ─────
-    // Uses fastSeek() when available (much faster, trades precision for speed)
-    // Skips if delta < 1 video-frame worth (~1/30s) to avoid thrashing
-    const FRAME = 1 / 30;
-
+    // ── RAF loop ──────────────────────────────────────────────────
     function rafLoop() {
-      if (heroVideo.duration && !isNaN(heroVideo.duration) && heroVideo.readyState >= 2) {
-        // Lerp displayTime toward targetTime — smooths out fast-scroll jerking
-        displayTime += (targetTime - displayTime) * 0.18;
+      // Draw correct frame
+      const targetIdx = Math.min(TOTAL - 1, Math.round(scrollProgress * (TOTAL - 1)));
+      if (targetIdx !== lastDrawnIdx && frames[targetIdx]) drawFrame(targetIdx);
 
-        const delta = Math.abs(displayTime - lastSeekTime);
-        if (delta >= FRAME) {
-          if (typeof heroVideo.fastSeek === 'function') {
-            heroVideo.fastSeek(displayTime);
-          } else {
-            heroVideo.currentTime = displayTime;
-          }
-          lastSeekTime = displayTime;
-        }
-      }
-
-      // ── Overlay fade & drift (also in RAF, zero layout thrash) ──
+      // Overlay text fade + drift
       const p = scrollProgress;
-
-      // Text: visible until 20%, fades out by 42% — gone well before section ends
-      const textOpacity = p < 0.25 ? 1
-        : p < 0.75 ? 1 - (p - 0.25) / 0.50
-        : 0;
+      const textOpacity = p < 0.2 ? 1 : p < 0.5 ? 1 - (p - 0.2) / 0.3 : 0;
       if (heroTagline) {
         heroTagline.style.opacity   = textOpacity;
-        heroTagline.style.transform = `translateY(${p * -50}px)`;
+        heroTagline.style.transform = `translateY(${p * -60}px)`;
       }
       if (heroSub) {
         heroSub.style.opacity   = textOpacity;
-        heroSub.style.transform = `translateY(${p * -30}px)`;
+        heroSub.style.transform = `translateY(${p * -35}px)`;
       }
-
-      // Scroll indicator: hide after first movement
       if (scrollInd) scrollInd.style.opacity = p > 0.03 ? 0 : 1;
 
       requestAnimationFrame(rafLoop);
     }
-
-    // Start loop once metadata is ready
-    if (heroVideo.readyState >= 1) {
-      rafLoop();
-    } else {
-      heroVideo.addEventListener('loadedmetadata', rafLoop, { once: true });
-    }
+    rafLoop();
   }
 
   // ── Nav scroll state ───────────────────────────────────────────
