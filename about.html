@@ -330,20 +330,21 @@ window.addEventListener('load', function () {
     el.innerHTML = words
       .map(function (w) { return '<span class="wrs" style="display:inline-block;">' + w + '</span>'; })
       .join(' ');
-    var spans = el.querySelectorAll('.wrs');
 
-    gsap.set(spans, { color: 'rgba(40,40,42,0.15)' });
-
-    gsap.to(spans, {
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 80%',
-        end: 'bottom 25%',
-        scrub: 1.5,
-      },
-      color: '#28282A',
-      stagger: { each: 0.06, ease: 'none' },
-      ease: 'none',
+    el.querySelectorAll('.wrs').forEach(function (span) {
+      gsap.fromTo(span,
+        { color: 'rgba(40,40,42,0.15)' },
+        {
+          color: '#28282A',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: span,
+            start: 'top 68%',
+            end: 'top 48%',
+            scrub: 0.4,
+          },
+        }
+      );
     });
   });
 });
