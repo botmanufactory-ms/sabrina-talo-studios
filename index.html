@@ -50,8 +50,13 @@
       position: sticky;
       top: 0;
       height: 100dvh;
-      width: 100%;
+      width: auto;
+      margin: 0 40px;
       overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .hero-sticky { margin: 0 16px; }
     }
 
     #hero-canvas {
@@ -750,8 +755,9 @@
     const dpr = window.devicePixelRatio || 1;
 
     function resizeCanvas() {
-      heroCanvas.width  = window.innerWidth  * dpr;
-      heroCanvas.height = window.innerHeight * dpr;
+      const container = heroCanvas.parentElement;
+      heroCanvas.width  = container.offsetWidth  * dpr;
+      heroCanvas.height = container.offsetHeight * dpr;
       if (lastDrawnIdx >= 0 && frames[lastDrawnIdx]) drawFrame(lastDrawnIdx);
     }
 
