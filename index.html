@@ -259,7 +259,26 @@
     }
 
     .service-statement-inner {
-      max-width: 860px;
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .service-statement-text { }
+
+    .service-statement-photo {
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+
+    .service-statement-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(100%);
     }
 
     .service-statement-heading {
@@ -521,6 +540,8 @@
 
     @media (max-width: 768px) {
       .service-statement { padding: 56px 0 64px; }
+      .service-statement-inner { grid-template-columns: 1fr; gap: var(--space-xl); }
+      .service-statement-photo { aspect-ratio: 4/3; order: -1; }
       .service-statement-heading { font-size: clamp(24px, 6.5vw, 36px); }
       .service-statement-body { grid-template-columns: 1fr; gap: var(--space-lg); }
       .service-statement-links { flex-direction: column; gap: var(--space-md); }
@@ -648,27 +669,38 @@
   <section class="service-statement section" id="service-statement" aria-labelledby="service-statement-heading">
     <div class="container">
       <div class="service-statement-inner">
-        <span class="label reveal">Interior Styling · Bangalow, NSW</span>
-        <h2 id="service-statement-heading" class="service-statement-heading reveal reveal-delay-1">
-          Your space should feel like you.
-        </h2>
-        <div class="service-statement-body">
-          <p class="reveal reveal-delay-2">
-            I'm Sabrina — an interior stylist based in Bangalow. I work with homeowners across the Northern Rivers to create spaces that feel personal, warm, and genuinely yours. I mix new pieces with second-hand finds, build on what you already love, and shape everything around the way you actually live.
-          </p>
-          <p class="reveal reveal-delay-3">
-            For holiday rental hosts, the brief is different — guests don't need it to feel like them, they need it to feel like somewhere worth coming back to. I style holiday properties to feel warm, considered, and inviting, so guests book again and tell their friends.
-          </p>
+        <div class="service-statement-text">
+          <span class="label reveal">Interior Styling · Bangalow, NSW</span>
+          <h2 id="service-statement-heading" class="service-statement-heading reveal reveal-delay-1">
+            Your space should feel like you.
+          </h2>
+          <div class="service-statement-body">
+            <p class="reveal reveal-delay-2">
+              I'm Sabrina — an interior stylist based in Bangalow. I work with homeowners across the Northern Rivers to create spaces that feel personal, warm, and genuinely yours. I mix new pieces with second-hand finds, build on what you already love, and shape everything around the way you actually live.
+            </p>
+            <p class="reveal reveal-delay-3">
+              For holiday rental hosts, the brief is different — guests don't need it to feel like them, they need it to feel like somewhere worth coming back to. I style holiday properties to feel warm, considered, and inviting, so guests book again and tell their friends.
+            </p>
+          </div>
+          <div class="service-statement-links reveal reveal-delay-4">
+            <a href="private-homes.html" class="service-statement-link">
+              Private Homes
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="holiday-homes.html" class="service-statement-link">
+              Holiday Rentals
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
         </div>
-        <div class="service-statement-links reveal reveal-delay-4">
-          <a href="private-homes.html" class="service-statement-link">
-            Private Homes
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="holiday-homes.html" class="service-statement-link">
-            Holiday Rentals
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        <div class="service-statement-photo reveal">
+          <img
+            src="Media/Sabrina_Intro.webp"
+            alt="Sabrina Talo — interior stylist based in Bangalow, NSW"
+            loading="lazy"
+            width="1120"
+            height="1456"
+          >
         </div>
       </div>
     </div>
