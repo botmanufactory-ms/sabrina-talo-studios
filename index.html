@@ -74,38 +74,42 @@
       pointer-events: none;
     }
 
-    .hero-tagline {
+    #hero-text-stack {
       position: absolute;
       left: 0;
       right: 0;
-      top: 13%;
+      top: 12%;
       text-align: center;
-      font-family: var(--font-display);
-      font-size: clamp(32px, 6vw, 90px);
-      font-weight: 600;
-      line-height: 0.9;
-      letter-spacing: -0.01em;
+      padding: 0 var(--space-xl);
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(40px, 7.5vw, 115px);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      color: #28282A;
+      opacity: 0;
+      will-change: opacity;
+      margin: 0 0 clamp(10px, 1.2vw, 20px) 0;
+    }
+
+    .hero-sub {
+      font-family: var(--font-heading);
+      font-size: clamp(10px, 0.9vw, 13px);
+      font-weight: 400;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: #ffffff;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.18);
+      color: rgba(40,40,42,0.55);
+      line-height: 1.9;
       opacity: 0;
       will-change: opacity;
     }
 
-    .hero-sub {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 4%;
-      text-align: center;
-      font-family: var(--font-body);
-      font-size: clamp(14px, 1.3vw, 18px);
-      font-weight: 600;
-      color: var(--color-text);
-      text-shadow: none;
-      line-height: 1.6;
-      opacity: 0;
-      will-change: opacity;
+    @media (max-width: 768px) {
+      #hero-text-stack { top: 10%; padding: 0 var(--space-lg); }
     }
 
     .hero-scroll-indicator {
@@ -366,10 +370,6 @@
     }
 
     @media (max-width: 768px) {
-      .hero-overlay-content {
-        padding: 0 var(--space-lg) 60px;
-      }
-
       .intro-section { padding: 80px 0; }
 
       .intro-quote {
@@ -430,8 +430,10 @@
       <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
       <div class="hero-overlay-content">
-        <h1 class="hero-tagline" id="hero-tagline">Live<br>Beautifully.</h1>
-        <p class="hero-sub" id="hero-sub">Styling real homes for real people — spaces that feel like you.</p>
+        <div id="hero-text-stack">
+          <h1 class="hero-tagline" id="hero-tagline">Live Beautifully.</h1>
+          <p class="hero-sub" id="hero-sub">Styling real homes for real people — spaces that feel like you.</p>
+        </div>
       </div>
 
       <!-- Scroll indicator -->
@@ -744,7 +746,7 @@
   const scrollInd   = document.getElementById('scroll-indicator');
 
   if (heroCanvas && heroScroll) {
-    const TOTAL   = 151;
+    const TOTAL   = 239;
     const DIR     = 'Media/frames/';
     const frames  = new Array(TOTAL).fill(null);
     const ctx     = heroCanvas.getContext('2d');
@@ -799,15 +801,15 @@
       });
     }
 
-    // Load first 20 eagerly, then rest in parallel batches of 8
+    // Load first 30 eagerly, rest in parallel batches of 12
     async function bootstrap() {
       const eager = [];
-      for (let i = 1; i <= 20; i++) eager.push(loadFrame(i));
+      for (let i = 1; i <= 30; i++) eager.push(loadFrame(i));
       await Promise.all(eager);
       drawFrame(0);
 
-      const BATCH = 8;
-      for (let i = 21; i <= TOTAL; i += BATCH) {
+      const BATCH = 12;
+      for (let i = 31; i <= TOTAL; i += BATCH) {
         const batch = [];
         for (let j = i; j < Math.min(i + BATCH, TOTAL + 1); j++) batch.push(loadFrame(j));
         await Promise.all(batch);
