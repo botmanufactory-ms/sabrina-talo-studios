@@ -3,9 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects — Sabrina Talo Studios</title>
-  <meta name="description" content="Selected styling projects by Sabrina Talo Studios. Private homes and holiday rentals across the Byron Bay hinterland.">
-  <link rel="stylesheet" href="style.css">
+  <title>Projects — Interior Styling by Sabrina Talo Studios</title>
+  <meta name="description" content="Selected styling projects by Sabrina Talo Studios. Private homes and holiday rentals across the Byron Bay hinterland and Northern Rivers, NSW.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://sabrinatalostudios.com.au/projects.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="../Media/Logo_Hero.webp">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Projects — Interior Styling by Sabrina Talo Studios">
+  <meta property="og:description" content="Selected interior styling projects — private homes and holiday rentals across the Byron Bay hinterland and Northern Rivers, NSW.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sabrinatalostudios.com.au/projects.html">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:image" content="https://sabrinatalostudios.com.au/Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:site_name" content="Sabrina Talo Studios">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Projects — Interior Styling by Sabrina Talo Studios">
+  <meta name="twitter:description" content="Selected interior styling projects — private homes and holiday rentals across the Byron Bay hinterland, NSW.">
+  <meta name="twitter:image" content="https://sabrinatalostudios.com.au/Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp">
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+  <link rel="stylesheet" href="../style.css">
   <style>
     .projects-page { padding-top: var(--nav-height); }
 
@@ -59,9 +89,23 @@
     .project-card:nth-child(1) img,
     .project-card:nth-child(4) img { aspect-ratio: 16/9; }
 
-    .project-card:hover img {
+    .project-card:hover img,
+    .project-card:hover a img {
       transform: scale(1.04);
     }
+
+    .project-card a .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,25,21,0.75) 0%, transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-lg);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .project-card:hover a .project-overlay,
+    .project-card:focus-within a .project-overlay { opacity: 1; }
 
     .project-overlay {
       position: absolute;
@@ -120,7 +164,12 @@
       cursor: pointer;
       font-family: var(--font-heading);
       line-height: 1;
-      padding: 8px;
+      padding: 12px;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: color 0.2s ease;
     }
     .lightbox-close:hover { color: #fff; }
@@ -145,6 +194,7 @@
       .project-card:nth-child(1) { grid-column: span 2; }
       .project-card img, .project-card:nth-child(1) img, .project-card:nth-child(4) img { aspect-ratio: 4/3; }
       .project-overlay { opacity: 1; }
+      .projects-cta { padding: 64px var(--space-lg); }
     }
     @media (max-width: 480px) {
       .projects-grid { grid-template-columns: 1fr; }
@@ -158,15 +208,15 @@
 
 <nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="Sabrina Talo Studios — Home">
-      <img src="Media/Logo_Hero.webp" alt="SABRINA TALO STUDIOS" width="200" height="36">
+    <a href="../index.html" class="nav-logo" aria-label="Sabrina Talo Studios — Home">
+      <img src="../Media/Logo_Hero.webp" alt="SABRINA TALO STUDIOS" width="200" height="36">
     </a>
     <ul class="nav-links" role="list">
-      <li><a href="projects.html" class="nav-link active">Projects</a></li>
-      <li><a href="holiday-homes.html" class="nav-link">Holiday Homes</a></li>
-      <li><a href="private-homes.html" class="nav-link">Private Homes</a></li>
-      <li><a href="about.html" class="nav-link">About STS</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
+      <li><a href="./" class="nav-link active">Projects</a></li>
+      <li><a href="../holiday-homes.html" class="nav-link">Holiday Homes</a></li>
+      <li><a href="../private-homes.html" class="nav-link">Private Homes</a></li>
+      <li><a href="../about.html" class="nav-link">About STS</a></li>
+      <li><a href="../contact.html" class="nav-link">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
@@ -177,11 +227,11 @@
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation" aria-modal="true">
   <nav aria-label="Mobile navigation">
     <ul class="mobile-menu-links" role="list">
-      <li><a href="projects.html" class="mobile-menu-link">Projects</a></li>
-      <li><a href="holiday-homes.html" class="mobile-menu-link">Holiday Homes</a></li>
-      <li><a href="private-homes.html" class="mobile-menu-link">Private Homes</a></li>
-      <li><a href="about.html" class="mobile-menu-link">About STS</a></li>
-      <li><a href="contact.html" class="mobile-menu-link">Contact</a></li>
+      <li><a href="./" class="mobile-menu-link">Projects</a></li>
+      <li><a href="../holiday-homes.html" class="mobile-menu-link">Holiday Homes</a></li>
+      <li><a href="../private-homes.html" class="mobile-menu-link">Private Homes</a></li>
+      <li><a href="../about.html" class="mobile-menu-link">About STS</a></li>
+      <li><a href="../contact.html" class="mobile-menu-link">Contact</a></li>
     </ul>
   </nav>
   <p class="mobile-menu-footer">Bangalow, Australia &nbsp;·&nbsp; Mon–Fri 9am–5pm</p>
@@ -201,18 +251,20 @@
   <!-- Project Grid -->
   <div class="projects-grid" role="list" aria-label="Project portfolio">
 
-    <article class="project-card reveal" role="listitem" tabindex="0" onclick="openLightbox('Media/EA4A7CD1-064C-4129-BC17-D876B121644C.webp','Bangalow Residence')" aria-label="View Bangalow Residence project">
-      <img src="Media/EA4A7CD1-064C-4129-BC17-D876B121644C.webp" alt="Bangalow Residence — warm, layered living space with carefully curated interiors" loading="lazy" width="1200" height="675">
-      <div class="project-overlay">
-        <div class="project-info">
-          <h3>Bangalow Residence</h3>
-          <span>Private Home &nbsp;·&nbsp; 2024</span>
+    <article class="project-card reveal" role="listitem">
+      <a href="bangalow-home.html" aria-label="View Bangalow Home Transformation project" style="display:block; position:relative; overflow:hidden;">
+        <img src="../Media/IMG_8819.webp" alt="Bangalow Home Transformation — soft coastal-rustic styling with natural textures and layered warmth" loading="lazy" width="1200" height="675">
+        <div class="project-overlay">
+          <div class="project-info">
+            <h3>Bangalow Home</h3>
+            <span>Private Home &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Full Transformation</span>
+          </div>
         </div>
-      </div>
+      </a>
     </article>
 
-    <article class="project-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="openLightbox('Media/IMG_9013.webp','Holiday Home Styling')" aria-label="View Holiday Home Styling project">
-      <img src="Media/IMG_9013.webp" alt="Holiday Home Styling — styled for guests with warmth and character" loading="lazy" width="600" height="450">
+    <article class="project-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="openLightbox('../Media/IMG_9013.webp','Holiday Home Styling')" aria-label="View Holiday Home Styling project">
+      <img src="../Media/IMG_9013.webp" alt="Holiday Home Styling — styled for guests with warmth and character" loading="lazy" width="600" height="450">
       <div class="project-overlay">
         <div class="project-info">
           <h3>Holiday Home Styling</h3>
@@ -221,8 +273,8 @@
       </div>
     </article>
 
-    <article class="project-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="openLightbox('Media/IMG_8890.webp','Byron Bay Rental')" aria-label="View Byron Bay Rental project">
-      <img src="Media/IMG_8890.webp" alt="Byron Bay Rental — holiday home styled for elevated guest experience" loading="lazy" width="600" height="450">
+    <article class="project-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="openLightbox('../Media/IMG_8890.webp','Byron Bay Rental')" aria-label="View Byron Bay Rental project">
+      <img src="../Media/IMG_8890.webp" alt="Byron Bay Rental — holiday home styled for elevated guest experience" loading="lazy" width="600" height="450">
       <div class="project-overlay">
         <div class="project-info">
           <h3>Byron Bay Rental</h3>
@@ -231,8 +283,8 @@
       </div>
     </article>
 
-    <article class="project-card reveal" role="listitem" tabindex="0" onclick="openLightbox('Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp','Mullumbimby Home')" aria-label="View Mullumbimby Home project">
-      <img src="Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp" alt="Mullumbimby Home — personal residence styled to feel grounded and inviting" loading="lazy" width="1200" height="675">
+    <article class="project-card reveal" role="listitem" tabindex="0" onclick="openLightbox('../Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp','Mullumbimby Home')" aria-label="View Mullumbimby Home project">
+      <img src="../Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp" alt="Mullumbimby Home — personal residence styled to feel grounded and inviting" loading="lazy" width="1200" height="675">
       <div class="project-overlay">
         <div class="project-info">
           <h3>Mullumbimby Home</h3>
@@ -241,8 +293,8 @@
       </div>
     </article>
 
-    <article class="project-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="openLightbox('Media/IMG_8791.webp','Lennox Head Residence')" aria-label="View Lennox Head Residence project">
-      <img src="Media/IMG_8791.webp" alt="Lennox Head Residence — curated mix of vintage and new pieces" loading="lazy" width="600" height="450">
+    <article class="project-card reveal reveal-delay-1" role="listitem" tabindex="0" onclick="openLightbox('../Media/IMG_8791.webp','Lennox Head Residence')" aria-label="View Lennox Head Residence project">
+      <img src="../Media/IMG_8791.webp" alt="Lennox Head Residence — curated mix of vintage and new pieces" loading="lazy" width="600" height="450">
       <div class="project-overlay">
         <div class="project-info">
           <h3>Lennox Head Residence</h3>
@@ -251,8 +303,8 @@
       </div>
     </article>
 
-    <article class="project-card reveal reveal-delay-2" role="listitem" tabindex="0" onclick="openLightbox('Media/IMG_9013.webp','Bangalow Airbnb')" aria-label="View Bangalow Airbnb project">
-      <img src="Media/IMG_9013.webp" alt="Bangalow Airbnb — holiday rental with warm, characterful styling" loading="lazy" width="600" height="450">
+    <article class="project-card reveal reveal-delay-2" role="listitem" tabindex="0" onclick="openLightbox('../Media/IMG_9013.webp','Bangalow Airbnb')" aria-label="View Bangalow Airbnb project">
+      <img src="../Media/IMG_9013.webp" alt="Bangalow Airbnb — holiday rental with warm, characterful styling" loading="lazy" width="600" height="450">
       <div class="project-overlay">
         <div class="project-info">
           <h3>Bangalow Airbnb</h3>
@@ -267,7 +319,7 @@
   <div class="projects-cta">
     <span class="label reveal">Your Space</span>
     <h2 class="reveal reveal-delay-1">Ready to start your project?</h2>
-    <a href="contact.html" class="btn btn-primary reveal reveal-delay-2">Get In Touch</a>
+    <a href="../contact.html" class="btn btn-primary reveal reveal-delay-2">Get In Touch</a>
   </div>
 
 </main>
@@ -282,7 +334,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <img src="Media/LOGOS++SABRINA+TALO+STUDIOS.webp" alt="SABRINA TALO STUDIOS" class="footer-brand-logo" width="200" height="28">
+        <img src="../Media/LOGOS++SABRINA+TALO+STUDIOS.webp" alt="SABRINA TALO STUDIOS" class="footer-brand-logo" width="200" height="28">
         <p class="footer-tagline">Live Beautifully.</p>
         <p class="footer-desc">Interior styling for private homes and holiday rentals. Based in Bangalow, NSW, Australia.</p>
         <div class="footer-social">
@@ -299,11 +351,11 @@
       <div>
         <p class="footer-heading">Navigate</p>
         <ul class="footer-links" role="list">
-          <li><a href="projects.html" class="footer-link">Projects</a></li>
-          <li><a href="holiday-homes.html" class="footer-link">Holiday Homes</a></li>
-          <li><a href="private-homes.html" class="footer-link">Private Homes</a></li>
-          <li><a href="about.html" class="footer-link">About STS</a></li>
-          <li><a href="contact.html" class="footer-link">Contact</a></li>
+          <li><a href="./" class="footer-link">Projects</a></li>
+          <li><a href="../holiday-homes.html" class="footer-link">Holiday Homes</a></li>
+          <li><a href="../private-homes.html" class="footer-link">Private Homes</a></li>
+          <li><a href="../about.html" class="footer-link">About STS</a></li>
+          <li><a href="../contact.html" class="footer-link">Contact</a></li>
         </ul>
       </div>
       <div class="footer-info">

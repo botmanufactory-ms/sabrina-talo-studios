@@ -3,8 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About STS — Sabrina Talo Studios</title>
-  <meta name="description" content="The story behind Sabrina Talo Studios. Based in Bangalow, styling real homes for real people.">
+  <title>About Sabrina Talo — Interior Stylist in Bangalow, NSW</title>
+  <meta name="description" content="The story behind Sabrina Talo Studios. Based in Bangalow, NSW — interior stylist working with private homeowners and holiday rental hosts across the Northern Rivers.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://sabrinatalostudios.com.au/about.html">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="Media/Logo_Hero.webp">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Sabrina Talo — Interior Stylist in Bangalow">
+  <meta property="og:description" content="Interior stylist working with private homeowners and holiday rental hosts across the Northern Rivers. Based in Bangalow, NSW.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sabrinatalostudios.com.au/about.html">
+  <meta property="og:locale" content="en_AU">
+  <meta property="og:image" content="https://sabrinatalostudios.com.au/Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:site_name" content="Sabrina Talo Studios">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Sabrina Talo — Interior Stylist in Bangalow">
+  <meta name="twitter:description" content="Interior stylist working with private homeowners and holiday rental hosts across the Northern Rivers. Based in Bangalow, NSW.">
+  <meta name="twitter:image" content="https://sabrinatalostudios.com.au/Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp">
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
   <link rel="stylesheet" href="style.css">
   <style>
     .about-intro {
@@ -117,7 +148,7 @@
         position: static;
         order: -1;
       }
-      .about-portrait img { aspect-ratio: 4/3; }
+      .about-portrait img { aspect-ratio: 3/4; }
       .philosophy-grid {
         grid-template-columns: 1fr;
       }
@@ -129,6 +160,8 @@
         grid-template-columns: 1fr 1fr;
       }
       .about-intro { padding: 80px 0; }
+      .about-philosophy { padding: 64px 0; }
+      .about-cta { padding: 80px var(--space-lg); }
     }
   </style>
 </head>
@@ -142,7 +175,7 @@
       <img src="Media/Logo_Hero.webp" alt="SABRINA TALO STUDIOS" width="200" height="36">
     </a>
     <ul class="nav-links" role="list">
-      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="projects/" class="nav-link">Projects</a></li>
       <li><a href="holiday-homes.html" class="nav-link">Holiday Homes</a></li>
       <li><a href="private-homes.html" class="nav-link">Private Homes</a></li>
       <li><a href="about.html" class="nav-link active">About STS</a></li>
@@ -157,7 +190,7 @@
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation" aria-modal="true">
   <nav aria-label="Mobile navigation">
     <ul class="mobile-menu-links" role="list">
-      <li><a href="projects.html" class="mobile-menu-link">Projects</a></li>
+      <li><a href="projects/" class="mobile-menu-link">Projects</a></li>
       <li><a href="holiday-homes.html" class="mobile-menu-link">Holiday Homes</a></li>
       <li><a href="private-homes.html" class="mobile-menu-link">Private Homes</a></li>
       <li><a href="about.html" class="mobile-menu-link">About STS</a></li>
@@ -285,7 +318,7 @@
       <div>
         <p class="footer-heading">Navigate</p>
         <ul class="footer-links" role="list">
-          <li><a href="projects.html" class="footer-link">Projects</a></li>
+          <li><a href="projects/" class="footer-link">Projects</a></li>
           <li><a href="holiday-homes.html" class="footer-link">Holiday Homes</a></li>
           <li><a href="private-homes.html" class="footer-link">Private Homes</a></li>
           <li><a href="about.html" class="footer-link">About STS</a></li>
@@ -333,15 +366,15 @@ window.addEventListener('load', function () {
 
     el.querySelectorAll('.wrs').forEach(function (span) {
       gsap.fromTo(span,
-        { color: 'rgba(28,25,21,0.15)' },
+        { color: 'rgba(28,25,21,0.08)' },
         {
           color: '#1C1915',
           ease: 'none',
           scrollTrigger: {
             trigger: span,
-            start: 'top 68%',
-            end: 'top 48%',
-            scrub: 0.4,
+            start: 'top 72%',
+            end: 'top 62%',
+            scrub: 0.3,
           },
         }
       );

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sabrinatalostudios.com.au/sitemap.xml

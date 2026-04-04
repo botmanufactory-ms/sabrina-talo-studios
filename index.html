@@ -6,32 +6,83 @@
   <title>Sabrina Talo Studios — Live Beautifully</title>
   <meta name="description" content="Interior styling studio based in Bangalow, Australia. Styling real homes for real people — spaces that feel like you.">
 
+  <!-- Canonical -->
+  <link rel="canonical" href="https://sabrinatalostudios.com.au/">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="Media/Logo_Hero.webp">
+
   <!-- Open Graph -->
-  <meta property="og:title" content="Sabrina Talo Studios — Live Beautifully">
-  <meta property="og:description" content="Styling real homes for real people — spaces that feel like you.">
+  <meta property="og:title" content="Sabrina Talo Studios — Interior Styling in Bangalow">
+  <meta property="og:description" content="Interior styling for private homes and holiday rentals in Bangalow, NSW. Spaces that feel personal, warm, and genuinely yours.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sabrinatalostudios.com.au/">
   <meta property="og:locale" content="en_AU">
+  <meta property="og:image" content="https://sabrinatalostudios.com.au/Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:site_name" content="Sabrina Talo Studios">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sabrina Talo Studios — Interior Styling in Bangalow">
+  <meta name="twitter:description" content="Interior styling for private homes and holiday rentals in Bangalow, NSW. Spaces that feel personal, warm, and genuinely yours.">
+  <meta name="twitter:image" content="https://sabrinatalostudios.com.au/Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp">
 
   <!-- Structured Data: LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://sabrinatalostudios.com.au/#business",
     "name": "Sabrina Talo Studios",
-    "description": "Interior styling studio for private homes and holiday rentals",
+    "description": "Interior styling studio for private homes and holiday rentals in Bangalow, NSW.",
+    "url": "https://sabrinatalostudios.com.au/",
+    "logo": "https://sabrinatalostudios.com.au/Media/LOGOS++SABRINA+TALO+STUDIOS.webp",
+    "image": "https://sabrinatalostudios.com.au/Media/41ABE711-9AEE-44CE-BF73-110BF729DAFB.webp",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bangalow",
       "addressRegion": "NSW",
+      "postalCode": "2479",
       "addressCountry": "AU"
     },
-    "openingHours": "Mo-Fr 09:00-17:00",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -28.6853,
+      "longitude": 153.5214
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    ],
+    "priceRange": "$$",
+    "areaServed": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": -28.6853,
+        "longitude": 153.5214
+      },
+      "geoRadius": "100000"
+    },
     "sameAs": [
       "https://www.instagram.com/sabrinatalostudios/",
       "https://www.facebook.com/profile.php?id=61574074654975"
     ]
   }
   </script>
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
   <link rel="stylesheet" href="style.css">
 
@@ -43,7 +94,7 @@
     }
 
     @media (max-width: 768px) {
-      .hero-scroll-section { height: 180vh; }
+      .hero-scroll-section { height: 200vh; }
     }
 
     .hero-sticky {
@@ -56,8 +107,9 @@
     }
 
     @media (max-width: 768px) {
-      .hero-sticky { margin: 0 16px; }
+      .hero-sticky { margin: 0; height: 100dvh; }
     }
+
 
     #hero-canvas {
       position: absolute;
@@ -84,7 +136,7 @@
     }
 
     .hero-tagline {
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-family: var(--font-display);
       font-size: clamp(40px, 7.5vw, 115px);
       font-weight: 300;
       font-style: italic;
@@ -98,7 +150,7 @@
 
     .hero-sub {
       font-family: var(--font-heading);
-      font-size: clamp(10px, 0.9vw, 13px);
+      font-size: clamp(12px, 0.9vw, 13px);
       font-weight: 400;
       letter-spacing: 0.24em;
       text-transform: uppercase;
@@ -109,7 +161,29 @@
     }
 
     @media (max-width: 768px) {
-      #hero-text-stack { top: 10%; padding: 0 var(--space-lg); }
+      #hero-text-stack { top: 22%; padding: 0 var(--space-lg); }
+      .hero-tagline { color: #F5EFE8; font-weight: 500; font-style: normal; }
+      .hero-sub { letter-spacing: 0.10em; font-size: 12px; color: rgba(245,239,232,0.85); font-weight: 500; }
+
+      /* Gradient overlay so text reads over any photo */
+      .hero-sticky::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 10%,
+          rgba(28,25,21,0.35) 25%,
+          rgba(28,25,21,0.45) 40%,
+          rgba(28,25,21,0.1) 60%,
+          transparent 72%,
+          rgba(245,239,232,0.7) 85%,
+          rgba(245,239,232,1) 100%
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+      #hero-text-stack { z-index: 2; }
     }
 
     .hero-scroll-indicator {
@@ -131,6 +205,25 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       writing-mode: vertical-rl;
+    }
+
+    /* ── Hero Logo Center ─────────────────────────────────────── */
+    #hero-logo-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+    #hero-logo-center img {
+      width: clamp(180px, 22vw, 320px);
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+    @media (max-width: 768px) {
+      #hero-logo-center img { width: clamp(160px, 58vw, 240px); }
     }
 
     .scroll-line {
@@ -156,6 +249,63 @@
       0%   { top: -100%; }
       100% { top: 100%; }
     }
+
+    /* ── Service Statement ───────────────────────────────────── */
+    .service-statement {
+      padding: 80px 0 88px;
+      background: var(--color-muted);
+      border-top: 1px solid rgba(28,25,21,0.08);
+      border-bottom: 1px solid rgba(28,25,21,0.08);
+    }
+
+    .service-statement-inner {
+      max-width: 860px;
+    }
+
+    .service-statement-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      margin: var(--space-lg) 0 var(--space-xl);
+    }
+
+    .service-statement-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+
+    .service-statement-body p {
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(28,25,21,0.72);
+    }
+
+    .service-statement-links {
+      display: flex;
+      gap: var(--space-xl);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(28,25,21,0.12);
+    }
+
+    .service-statement-link {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.25s ease;
+    }
+
+    .service-statement-link:hover { gap: 14px; }
 
     /* ── Intro Section ────────────────────────────────────────── */
     .intro-section {
@@ -256,7 +406,7 @@
 
     .stat-number {
       font-family: var(--font-display);
-      font-size: clamp(48px, 6vw, 80px);
+      font-size: clamp(32px, 3vw, 44px);
       font-weight: 600;
       color: var(--color-text);
       line-height: 1;
@@ -370,14 +520,59 @@
     }
 
     @media (max-width: 768px) {
-      .intro-section { padding: 80px 0; }
+      .service-statement { padding: 56px 0 64px; }
+      .service-statement-heading { font-size: clamp(24px, 6.5vw, 36px); }
+      .service-statement-body { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .service-statement-links { flex-direction: column; gap: var(--space-md); }
+
+      .intro-section { padding: 56px 0 80px; }
 
       .intro-quote {
         font-size: clamp(20px, 4vw, 28px);
         padding-left: var(--space-lg);
       }
 
-      .contact-teaser { padding: 80px var(--space-lg); }
+.contact-teaser { padding: 80px var(--space-lg); }
+
+      /* Stat strip — display font too wide on mobile */
+      .stat-number {
+        font-size: clamp(26px, 7vw, 40px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .stat-item { padding: var(--space-lg); }
+
+      /* Sabrina photo — show full figure */
+      .about-image-col {
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 3/4;
+      }
+    }
+
+    /* ── Projects Teaser Grid ─────────────────────────────────── */
+    .projects-teaser-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    .projects-teaser-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 48px 0 0;
+      border-top: 1px solid rgba(28,25,21,0.1);
+      margin-top: 2px;
+    }
+    @media (max-width: 600px) {
+      .projects-teaser-grid { grid-template-columns: 1fr; }
+      .projects-teaser-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-lg);
+        padding-top: var(--space-xl);
+      }
     }
   </style>
 </head>
@@ -394,7 +589,7 @@
     </a>
 
     <ul class="nav-links" role="list">
-      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="projects/" class="nav-link">Projects</a></li>
       <li><a href="holiday-homes.html" class="nav-link">Holiday Homes</a></li>
       <li><a href="private-homes.html" class="nav-link">Private Homes</a></li>
       <li><a href="about.html" class="nav-link">About STS</a></li>
@@ -411,7 +606,7 @@
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Navigation" aria-modal="true">
   <nav aria-label="Mobile navigation">
     <ul class="mobile-menu-links" role="list">
-      <li><a href="projects.html" class="mobile-menu-link">Projects</a></li>
+      <li><a href="projects/" class="mobile-menu-link">Projects</a></li>
       <li><a href="holiday-homes.html" class="mobile-menu-link">Holiday Homes</a></li>
       <li><a href="private-homes.html" class="mobile-menu-link">Private Homes</a></li>
       <li><a href="about.html" class="mobile-menu-link">About STS</a></li>
@@ -430,6 +625,11 @@
       <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
       <div class="hero-overlay-content">
+        <!-- Centered logo — animates to nav on scroll -->
+        <div id="hero-logo-center" aria-hidden="true">
+          <img src="Media/Logo_Hero.webp" alt="">
+        </div>
+
         <div id="hero-text-stack">
           <h1 class="hero-tagline" id="hero-tagline">Live Beautifully.</h1>
           <p class="hero-sub" id="hero-sub">Styling real homes for real people — spaces that feel like you.</p>
@@ -440,6 +640,36 @@
       <div class="hero-scroll-indicator" id="scroll-indicator" aria-hidden="true">
         <div class="scroll-line"></div>
         <span>Scroll</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Statement -->
+  <section class="service-statement section" id="service-statement" aria-labelledby="service-statement-heading">
+    <div class="container">
+      <div class="service-statement-inner">
+        <span class="label reveal">Interior Styling · Bangalow, NSW</span>
+        <h2 id="service-statement-heading" class="service-statement-heading reveal reveal-delay-1">
+          Your space should feel like you.
+        </h2>
+        <div class="service-statement-body">
+          <p class="reveal reveal-delay-2">
+            I'm Sabrina — an interior stylist based in Bangalow. I work with homeowners across the Northern Rivers to create spaces that feel personal, warm, and genuinely yours. I mix new pieces with second-hand finds, build on what you already love, and shape everything around the way you actually live.
+          </p>
+          <p class="reveal reveal-delay-3">
+            For holiday rental hosts, the brief is different — guests don't need it to feel like them, they need it to feel like somewhere worth coming back to. I style holiday properties to feel warm, considered, and inviting, so guests book again and tell their friends.
+          </p>
+        </div>
+        <div class="service-statement-links reveal reveal-delay-4">
+          <a href="private-homes.html" class="service-statement-link">
+            Private Homes
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="holiday-homes.html" class="service-statement-link">
+            Holiday Rentals
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -611,7 +841,7 @@
   <!-- Projects Teaser -->
   <section class="section" id="projects-teaser" aria-label="Projects preview">
     <div class="container">
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 2px;">
+      <div class="projects-teaser-grid">
         <div style="overflow:hidden; aspect-ratio: 4/3;">
           <img
             src="Media/IMG_9013.webp"
@@ -633,7 +863,7 @@
           >
         </div>
       </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; padding: 48px 0 0; border-top: 1px solid rgba(28,25,21,0.1); margin-top: 2px;">
+      <div class="projects-teaser-footer">
         <div>
           <span class="label" style="display:block; margin-bottom: 12px;">Selected Work</span>
           <h2 class="reveal" style="font-size: clamp(28px, 4vw, 52px);">Projects</h2>
@@ -681,7 +911,7 @@
       <div>
         <p class="footer-heading">Navigate</p>
         <ul class="footer-links" role="list">
-          <li><a href="projects.html" class="footer-link">Projects</a></li>
+          <li><a href="projects/" class="footer-link">Projects</a></li>
           <li><a href="holiday-homes.html" class="footer-link">Holiday Homes</a></li>
           <li><a href="private-homes.html" class="footer-link">Private Homes</a></li>
           <li><a href="about.html" class="footer-link">About STS</a></li>
@@ -746,8 +976,10 @@
   const scrollInd   = document.getElementById('scroll-indicator');
 
   if (heroCanvas && heroScroll) {
-    const TOTAL   = 239;
-    const DIR     = 'Media/frames/';
+    // ── Mobile uses portrait frames, desktop uses landscape frames ──
+    const isMobile = window.innerWidth <= 768;
+    const TOTAL = isMobile ? 121 : 239;
+    const DIR   = isMobile ? 'Media/frames-mobile/' : 'Media/frames/';
     const frames  = new Array(TOTAL).fill(null);
     const ctx     = heroCanvas.getContext('2d');
     let   scrollProgress  = 0;
@@ -801,15 +1033,16 @@
       });
     }
 
-    // Load first 30 eagerly, rest in parallel batches of 12
+    // Load first frames eagerly, rest in parallel batches
     async function bootstrap() {
+      const eagerCount = isMobile ? 20 : 30;
+      const BATCH      = isMobile ? 10 : 12;
       const eager = [];
-      for (let i = 1; i <= 30; i++) eager.push(loadFrame(i));
+      for (let i = 1; i <= eagerCount; i++) eager.push(loadFrame(i));
       await Promise.all(eager);
       drawFrame(0);
 
-      const BATCH = 12;
-      for (let i = 31; i <= TOTAL; i += BATCH) {
+      for (let i = eagerCount + 1; i <= TOTAL; i += BATCH) {
         const batch = [];
         for (let j = i; j < Math.min(i + BATCH, TOTAL + 1); j++) batch.push(loadFrame(j));
         await Promise.all(batch);
@@ -912,7 +1145,11 @@
 
     revealEls.forEach(el => io.observe(el));
   } else {
-    // Fallback: show all
+    revealEls.forEach(el => el.classList.add('visible'));
+  }
+
+  // Mobile: show all reveal elements immediately (no scroll-wait)
+  if (window.innerWidth <= 768) {
     revealEls.forEach(el => el.classList.add('visible'));
   }
 
@@ -945,6 +1182,50 @@ window.addEventListener('load', function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
+  var isMobile = window.innerWidth <= 768;
+  var startColor = isMobile ? 'rgba(28,25,21,0.3)' : 'rgba(28,25,21,0.08)';
+
+  // ── Hero Logo → Nav Animation ──────────────────────────────
+  var heroLogoCenter = document.getElementById('hero-logo-center');
+  var navLogoImg = document.querySelector('.nav-logo img');
+
+  if (heroLogoCenter && navLogoImg) {
+    var heroR = heroLogoCenter.getBoundingClientRect();
+    var navR  = navLogoImg.getBoundingClientRect();
+
+    // Center-to-center delta
+    var dx    = (navR.left + navR.width  / 2) - (heroR.left + heroR.width  / 2);
+    var dy    = (navR.top  + navR.height / 2) - (heroR.top  + heroR.height / 2);
+    var scale = navR.width / heroR.width;
+
+    // Nav logo hidden initially — hero logo takes its visual place
+    gsap.set(navLogoImg, { opacity: 0 });
+
+    // Hero logo travels to nav, fades last 20% of journey
+    gsap.to(heroLogoCenter, {
+      x: dx, y: dy, scale: scale, opacity: 0,
+      ease: 'power2.inOut',
+      scrollTrigger: {
+        trigger: '#hero-scroll',
+        start: 'top top',
+        end: '+=320',
+        scrub: 1.2,
+      }
+    });
+
+    // Nav logo fades in as hero logo arrives
+    gsap.to(navLogoImg, {
+      opacity: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero-scroll',
+        start: '+=220',
+        end: '+=340',
+        scrub: 0.8,
+      }
+    });
+  }
+
   document.querySelectorAll('[data-word-reveal]').forEach(function (el) {
     var raw = el.textContent.trim();
     var words = raw.split(/\s+/);
@@ -954,15 +1235,15 @@ window.addEventListener('load', function () {
 
     el.querySelectorAll('.wrs').forEach(function (span) {
       gsap.fromTo(span,
-        { color: 'rgba(28,25,21,0.15)' },
+        { color: startColor },
         {
           color: '#1C1915',
           ease: 'none',
           scrollTrigger: {
             trigger: span,
-            start: 'top 68%',
-            end: 'top 48%',
-            scrub: 0.4,
+            start: 'top 72%',
+            end: 'top 62%',
+            scrub: 0.3,
           },
         }
       );
