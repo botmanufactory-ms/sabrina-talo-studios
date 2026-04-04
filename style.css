@@ -6,21 +6,26 @@
 /* Adobe Fonts: Replace XXXXXXX with your Typekit kit ID */
 /* @import url('https://use.typekit.net/XXXXXXX.css'); */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Oswald:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Oswald:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap');
 
 /* ── Design Tokens ─────────────────────────────────────────── */
 :root {
-  --color-primary:   #000000;
-  --color-accent:    #000000;
-  --color-bg:        #28282A;
-  --color-text:      #28282A;
-  --color-surface:   #FFFFFF;
-  --color-muted:     #F5F5F3;
-  --color-border:    #232325;
+  --color-primary:   #1C1915;
+  --color-accent:    #9B6A4A;
+  --color-bg:        #1C1915;
+  --color-text:      #1C1915;
+  --color-surface:   #F5EFE8;
+  --color-muted:     #EDE5DA;
+  --color-border:    #C4A882;
+  --color-earth:     #9B6A4A;
+  --color-ochre:     #C4A882;
+  --color-ivory:     #F5EFE8;
+  --color-sand:      #EDE5DA;
+  --color-ink:       #1C1915;
 
   --font-display:    'pragmatica-extended', 'Barlow Condensed', 'Oswald', sans-serif;
   --font-heading:    'aktiv-grotesk', 'Barlow', sans-serif;
-  --font-body:       'Open Sans', sans-serif;
+  --font-body:       'DM Sans', 'Open Sans', sans-serif;
 
   --space-xs:   4px;
   --space-sm:   8px;
@@ -314,7 +319,7 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-family: var(--font-heading);
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(32px, 5vw, 62px);
   font-weight: 400;
   line-height: 1.1;
@@ -350,7 +355,7 @@ p {
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(40,40,42,0.5);
+  color: rgba(28,25,21,0.5);
 }
 
 .label-light {
@@ -415,7 +420,7 @@ input:focus, textarea:focus {
 }
 
 input::placeholder, textarea::placeholder {
-  color: rgba(40,40,42,0.4);
+  color: rgba(28,25,21,0.4);
   font-size: 13px;
   letter-spacing: 0.04em;
 }
@@ -692,7 +697,7 @@ label {
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(40,40,42,0.8) 0%, rgba(40,40,42,0.1) 60%, transparent 100%);
+  background: linear-gradient(to top, rgba(28,25,21,0.8) 0%, rgba(28,25,21,0.1) 60%, transparent 100%);
 }
 
 .page-hero-content {
@@ -719,8 +724,8 @@ label {
   overflow: hidden;
   white-space: nowrap;
   padding: var(--space-xl) 0;
-  border-top: 1px solid rgba(40,40,42,0.12);
-  border-bottom: 1px solid rgba(40,40,42,0.12);
+  border-top: 1px solid rgba(28,25,21,0.12);
+  border-bottom: 1px solid rgba(28,25,21,0.12);
 }
 
 .marquee-inner {
