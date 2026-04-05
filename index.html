@@ -79,6 +79,10 @@
   }
   </script>
 
+  <!-- Preload first scrollytelling frame (before JS runs) -->
+  <link rel="preload" as="image" href="Media/frames/frame_0001.webp" media="(min-width: 769px)">
+  <link rel="preload" as="image" href="Media/frames-mobile/frame_0001.webp" media="(max-width: 768px)">
+
   <!-- Resource Hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1066,20 +1070,14 @@
       });
     }
 
-    // Load first frames eagerly, rest in parallel batches
+    // Fire all frame requests at once — HTTP/2 multiplexes them optimally.
+    // Draw as soon as frame 1 is ready; rest load in background.
     async function bootstrap() {
-      const eagerCount = isMobile ? 20 : 30;
-      const BATCH      = isMobile ? 10 : 12;
-      const eager = [];
-      for (let i = 1; i <= eagerCount; i++) eager.push(loadFrame(i));
-      await Promise.all(eager);
+      // Kick off all requests immediately (no batching, no sequential awaiting)
+      for (let i = 2; i <= TOTAL; i++) loadFrame(i);
+      // Only wait for frame 1 before first draw
+      await loadFrame(1);
       drawFrame(0);
-
-      for (let i = eagerCount + 1; i <= TOTAL; i += BATCH) {
-        const batch = [];
-        for (let j = i; j < Math.min(i + BATCH, TOTAL + 1); j++) batch.push(loadFrame(j));
-        await Promise.all(batch);
-      }
     }
     bootstrap();
 
