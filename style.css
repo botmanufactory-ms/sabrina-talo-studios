@@ -175,6 +175,30 @@ ul {
   width: 100%;
 }
 
+/* ── Nav CTA Button ─────────────────────────────────────────── */
+.nav-link-cta {
+  border: 1px solid rgba(255,255,255,0.6);
+  padding: 7px 18px;
+  letter-spacing: 0.12em;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.nav-link-cta::after { display: none; }
+.nav-link-cta:hover {
+  background: rgba(255,255,255,1);
+  color: var(--color-text) !important;
+  border-color: rgba(255,255,255,1);
+}
+
+#nav.scrolled .nav-link-cta {
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+#nav.scrolled .nav-link-cta:hover {
+  background: var(--color-text);
+  color: var(--color-surface) !important;
+  border-color: var(--color-text);
+}
+
 /* ── Hamburger ─────────────────────────────────────────────── */
 .hamburger {
   display: none;
