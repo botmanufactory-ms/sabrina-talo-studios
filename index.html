@@ -1207,10 +1207,10 @@
 </script>
 
 <!-- GSAP Word Reveal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-window.addEventListener('load', function () {
+(function () {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
@@ -1281,7 +1281,21 @@ window.addEventListener('load', function () {
       );
     });
   });
-});
+
+  // If user scrolled past hero before GSAP init, snap logo to final state
+  var heroSection = document.getElementById('hero-scroll');
+  if (heroSection) {
+    var heroLogoCenter2 = document.getElementById('hero-logo-center');
+    var navLogoImg2     = document.querySelector('.nav-logo img');
+    var triggerEnd = heroSection.offsetTop + 340;
+    if (window.pageYOffset >= triggerEnd && heroLogoCenter2 && navLogoImg2) {
+      gsap.set(heroLogoCenter2, { opacity: 0 });
+      gsap.set(navLogoImg2,     { opacity: 1 });
+    }
+  }
+
+  ScrollTrigger.refresh();
+}());
 </script>
 
 <!-- Screen-reader only helper -->
